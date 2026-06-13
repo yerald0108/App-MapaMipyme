@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../lib/supabase';
-import { Negocio, Producto } from '../types';
+import { Negocio, Producto, CategoriaНegocio } from '../types';
 import { CONFIG } from '../constants/config';
 
 // ─── Obtener todos los negocios activos ───────────────────
@@ -142,6 +142,65 @@ export function useEliminarProducto() {
     },
     onSuccess: ({ negocio_id }) => {
       queryClient.invalidateQueries({ queryKey: ['productos', negocio_id] });
+    },
+  });
+}
+
+// ─── Crear negocio ────────────────────────────────────────
+export function useCrearNegocio() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (negocio: {
+      nombre: string;
+      descripcion?: string;
+      categoria: CategoriaНegocio;
+      direccion: string;
+      municipio: string;
+      provincia: string;
+      telefono?: string;
+      horario_apertura?: string;
+      horario_cierre?: string;
+      dias_abierto?: string[];
+      latitud?: number;
+      longitud?: number;
+    }) => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('No autenticado');
+
+      const payload: any = {
+        dueno_id: user.id,
+        nombre: negocio.nombre,
+        descripcion: negocio.descripcion || null,
+        categoria: negocio.categoria,
+        direccion: negocio.direccion,
+        municipio: negocio.municipio,
+        provincia: negocio.provincia,
+        telefono: negocio.telefono || null,
+        horario_apertura: negocio.horario_apertura || null,
+        horario_cierre: negocio.horario_cierre || null,
+        dias_abierto: negocio.dias_abierto || [],
+        estado: 'pendiente',
+        membresia_activa: false,
+      };
+
+      if (negocio.latitud && negocio.longitud) {
+        payload.ubicacion = `POINT(${negocio.longitud} ${negocio.latitud})`;
+      }
+
+      const { data, error } = await supabase
+        .from('negocios')
+        .insert(payload)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data as Negocio;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['mis-negocios'] });
+      queryClient.invalidateQueries({ queryKey: ['admin-negocios'] });
+      queryClient.invalidateQueries({ queryKey: ['admin-estadisticas'] });
     },
   });
 }

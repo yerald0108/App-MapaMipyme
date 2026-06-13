@@ -185,8 +185,14 @@ export default function DuenoDashboard() {
             <Text style={styles.sinNegociosEmoji}>🏪</Text>
             <Text style={styles.sinNegociosTitulo}>Sin negocios registrados</Text>
             <Text style={styles.sinNegociosSubtitulo}>
-              Contacta al administrador para registrar tu negocio
+              Registra tu negocio para aparecer en el mapa
             </Text>
+            <TouchableOpacity
+              style={styles.btnRegistrarNegocio}
+              onPress={() => router.push('/(dueno)/nuevo-negocio')}
+            >
+              <Text style={styles.btnRegistrarNegocioTexto}>+ Registrar mi negocio</Text>
+            </TouchableOpacity>
           </View>
         )}
 
@@ -499,4 +505,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: COLORS.navInactive,
   },
+  btnRegistrarNegocio: {
+    marginTop: 8,
+    backgroundColor: COLORS.primary,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 12,
+},
+  btnRegistrarNegocioTexto: {
+    color: COLORS.white,
+    fontWeight: '800',
+    fontSize: 15,
+},
 });
