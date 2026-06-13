@@ -25,5 +25,5 @@ export const CONFIG = {
 
   // App
   APP_VERSION: '1.0.0',
-  APP_NOMBRE: 'MiPyME Map',
+  APP_NOMBRE: 'Encuentra Tu MiPyME',
 } as const;

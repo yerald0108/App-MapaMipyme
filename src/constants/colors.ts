@@ -1,48 +1,57 @@
 export const COLORS = {
-  // Primarios
-  primary: '#1a56db',
-  primaryDark: '#1044b8',
-  primaryLight: '#e8effd',
+  // Primarios — azul cubano oscuro
+  primary: '#1a3a6b',
+  primaryDark: '#0f2347',
+  primaryLight: '#e8eef7',
+  primaryMid: '#2a5298',
 
-  // Secundarios
-  secondary: '#0e9f6e',
-  secondaryDark: '#057a55',
-  secondaryLight: '#e8f8f3',
+  // Acento — rojo cubano
+  accent: '#cc2936',
+  accentLight: '#fdf0f1',
+
+  // Secundario — dorado/amarillo
+  secondary: '#f0a500',
+  secondaryLight: '#fdf6e3',
 
   // Neutrales
   white: '#ffffff',
-  black: '#111827',
-  gray100: '#f9fafb',
-  gray200: '#f3f4f6',
-  gray300: '#e5e7eb',
-  gray400: '#d1d5db',
-  gray500: '#9ca3af',
-  gray600: '#6b7280',
-  gray700: '#374151',
-  gray800: '#1f2937',
+  black: '#0d0d0d',
+  gray100: '#f8f9fa',
+  gray200: '#f1f3f5',
+  gray300: '#e9ecef',
+  gray400: '#ced4da',
+  gray500: '#adb5bd',
+  gray600: '#6c757d',
+  gray700: '#495057',
+  gray800: '#343a40',
 
   // Estados
-  success: '#0e9f6e',
-  warning: '#ff8000',
-  error: '#f05252',
-  info: '#3f83f8',
+  success: '#2d9e6b',
+  warning: '#f0a500',
+  error: '#cc2936',
+  info: '#2a5298',
 
   // Membresía
-  membresiaPro: '#7c3aed',
-  membresiaBasic: '#1a56db',
+  membresiaPro: '#1a3a6b',
+  membresiaBasic: '#6c757d',
 
   // Mapa
-  markerActivo: '#1a56db',
-  markerInactivo: '#9ca3af',
-  markerSinStock: '#f05252',
+  markerActivo: '#cc2936',
+  markerInactivo: '#adb5bd',
 
   // UI
-  background: '#f9fafb',
+  background: '#f8f9fa',
   surface: '#ffffff',
-  border: '#e5e7eb',
-  textPrimary: '#111827',
-  textSecondary: '#6b7280',
-  textMuted: '#9ca3af',
+  border: '#e9ecef',
+  borderDark: '#ced4da',
+  textPrimary: '#0d0d0d',
+  textSecondary: '#6c757d',
+  textMuted: '#adb5bd',
+
+  // Nav bar
+  navActive: '#1a3a6b',
+  navInactive: '#adb5bd',
+  navBackground: '#ffffff',
 } as const;
 
 export type ColorKey = keyof typeof COLORS;
